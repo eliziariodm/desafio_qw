@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FilterPage extends StatelessWidget {
-  FilterPage({Key? key}) : super(key: key);
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  const FilterPage({Key? key}) : super(key: key);
 
   Widget buildSheet() => Column(
         mainAxisSize: MainAxisSize.min,
@@ -90,7 +88,6 @@ class FilterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(

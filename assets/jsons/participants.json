@@ -1,0 +1,30 @@
+[
+    {
+        "id": 0,
+        "name": "Alex QWTI",
+        "email": "alex@gmail.com",
+        "ticket": "Gratuito",
+        "locator": "B2TX4P-1"
+    },
+    {
+        "id": 1,
+        "name": "Alexandre Dores Braga",
+        "email": "alexandre@gmail.com",
+        "ticket": "Gratuito",
+        "locator": "JQ55QS-1"
+    },
+    {
+        "id": 2,
+        "name": "Alexandre Dores Braga",
+        "email": "alexandre@gmail.com",
+        "ticket": "Ingresso teste",
+        "locator": "X0LGME-1"
+    },
+    {
+        "id": 3,
+        "name": "Fábio Nogueira Pereira da Silva",
+        "email": "fabio@gmail.com",
+        "ticket": "Gratuito",
+        "locator": "MRDA9P-1"
+    }
+]

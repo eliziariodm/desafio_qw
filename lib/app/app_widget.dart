@@ -2,6 +2,7 @@ import 'package:desafio_qw/app/modules/filter/filter_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'bindings/bindings.dart';
 import 'modules/home/home_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -10,14 +11,17 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: '/',
       getPages: [
         GetPage(
           name: '/',
+          binding: AppBindings(),
           page: () => const HomePage(),
         ),
         GetPage(
           name: '/filter',
-          page: () => FilterPage(),
+          binding: AppBindings(),
+          page: () => const FilterPage(),
         )
       ],
       theme: ThemeData(

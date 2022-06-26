@@ -1,92 +1,16 @@
+import 'package:desafio_qw/app/modules/filter/components/modal_bottom_component.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/participants_controller.dart';
 
 class FilterPage extends StatelessWidget {
   const FilterPage({Key? key}) : super(key: key);
 
-  Widget buildSheet() => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 15),
-            child: Icon(
-              Icons.maximize,
-              color: Colors.purple,
-              size: 40,
-            ),
-          ),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Text(
-                'Selecionar ingresso',
-                style: TextStyle(color: Colors.purple, fontSize: 18),
-              ),
-            ),
-          ),
-          ListTile(
-            title: const Text('Todos os ingressos'),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-            leading: Transform.scale(
-              scale: 1.4,
-              child: Radio(
-                activeColor: Colors.purple,
-                value: 0,
-                groupValue: 0,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          const Divider(color: Colors.grey, thickness: 1),
-          ListTile(
-            title: const Text('Ingresso Meia'),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-            leading: Transform.scale(
-              scale: 1.4,
-              child: Radio(
-                activeColor: Colors.purple,
-                value: 1,
-                groupValue: 1,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          ListTile(
-            title: const Text('Gratuito'),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-            leading: Transform.scale(
-              scale: 1.4,
-              child: Radio(
-                activeColor: Colors.purple,
-                value: 2,
-                groupValue: 2,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          const Divider(color: Colors.grey, thickness: 1),
-          ListTile(
-            title: const Text('Ingresso teste'),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-            leading: Transform.scale(
-              scale: 1.4,
-              child: Radio(
-                activeColor: Colors.purple,
-                value: 3,
-                groupValue: 3,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-        ],
-      );
-
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ParticipantsController>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -102,50 +26,76 @@ class FilterPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.symmetric(
-                              vertical: 13, horizontal: 25)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Colors.grey),
+              child: Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(0),
+                        backgroundColor: MaterialStateProperty.all(
+                          controller.checkInDone.value == false
+                              ? Colors.white
+                              : Colors.purple[700],
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 25)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Text(
-                      'Check-in realizado',
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    onPressed: () {},
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      elevation: MaterialStateProperty.all(0),
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.symmetric(
-                              vertical: 13, horizontal: 25)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Colors.grey),
+                      child: Text(
+                        'Check-in realizado',
+                        style: TextStyle(
+                          color: controller.checkInDone.value == false
+                              ? Colors.black54
+                              : Colors.white,
                         ),
                       ),
+                      onPressed: () {
+                        controller.checkInDone.value =
+                            !controller.checkInDone.value;
+                      },
                     ),
-                    child: const Text(
-                      'Check-in não realizado',
-                      style: TextStyle(color: Colors.black54),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all(0),
+                        backgroundColor: MaterialStateProperty.all(
+                          controller.checkInNotDone.value == false
+                              ? Colors.white
+                              : Colors.purple[700],
+                        ),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            const EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 25)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        'Check-in não realizado',
+                        style: TextStyle(
+                          color: controller.checkInNotDone.value == false
+                              ? Colors.black54
+                              : Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.checkInNotDone.value =
+                            !controller.checkInNotDone.value;
+                      },
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Text('Tipo ingresso:'),
@@ -155,7 +105,7 @@ class FilterPage extends StatelessWidget {
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => buildSheet(),
+                    builder: (context) => const ModalBottomComponent(),
                   );
                 },
                 child: Container(
@@ -166,12 +116,14 @@ class FilterPage extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Todos os ingressos',
-                        style: TextStyle(fontSize: 16),
+                    children: [
+                      Obx(
+                        () => Text(
+                          controller.ticketType.value,
+                          style: const TextStyle(fontSize: 16),
+                        ),
                       ),
-                      Icon(Icons.arrow_drop_down)
+                      const Icon(Icons.arrow_drop_down)
                     ],
                   ),
                 ),
@@ -202,7 +154,9 @@ class FilterPage extends StatelessWidget {
                 'Limpar Filtros',
                 style: TextStyle(color: Colors.black87),
               ),
-              onPressed: () {},
+              onPressed: () {
+                controller.clearFilter();
+              },
             ),
             ElevatedButton(
               style: ButtonStyle(
@@ -220,7 +174,11 @@ class FilterPage extends StatelessWidget {
                 'Aplicar Filtro',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {},
+              onPressed: () {
+                controller.filter();
+                // controller.filterTicket();
+                Get.back();
+              },
             ),
           ],
         ),

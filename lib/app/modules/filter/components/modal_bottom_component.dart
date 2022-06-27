@@ -46,7 +46,6 @@ class ModalBottomComponent extends StatelessWidget {
                   controller.radioValue.value = value.toString();
                   controller.ticketType.value = 'Todos os ingressos';
                   controller.filterCounterTicket.value = 0;
-
                   Get.back();
                 },
               ),
@@ -86,7 +85,6 @@ class ModalBottomComponent extends StatelessWidget {
                   controller.radioValue.value = value.toString();
                   controller.ticketType.value = 'Gratuito';
                   controller.filterCounterTicket.value = 1;
-
                   Get.back();
                 },
               ),

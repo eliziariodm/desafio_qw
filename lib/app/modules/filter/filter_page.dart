@@ -187,7 +187,6 @@ class FilterPage extends StatelessWidget {
               ),
               onPressed: () {
                 controller.filter();
-                // controller.filterTicket();
                 Get.back();
               },
             ),

@@ -37,36 +37,84 @@ class ParticipantsController extends GetxController {
   }
 
   void filter() {
-    if (checkInDone.value == true && checkInNotDone.value == false) {
+    if (checkInDone.value == true &&
+        checkInNotDone.value == false &&
+        ticketType.value == 'Gratuito') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == true &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInDone.value == true &&
+        checkInNotDone.value == false &&
+        ticketType.value == 'Ingresso teste') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == true &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInDone.value == true &&
+        checkInNotDone.value == false &&
+        ticketType.value == 'Ingresso Meia') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == true &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInDone.value == true &&
+        checkInNotDone.value == false &&
+        ticketType.value == 'Todos os ingressos') {
       foundList.value = participantsList
           .where((participant) => participant.checked == true)
           .toList();
-    } else if (checkInNotDone.value == true && checkInDone.value == false) {
+    } else if (checkInNotDone.value == true &&
+        checkInDone.value == false &&
+        ticketType.value == 'Gratuito') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == false &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInNotDone.value == true &&
+        checkInDone.value == false &&
+        ticketType.value == 'Ingresso teste') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == false &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInNotDone.value == true &&
+        checkInDone.value == false &&
+        ticketType.value == 'Ingresso Meia') {
+      foundList.value = participantsList
+          .where((participant) =>
+              participant.checked == false &&
+              participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (checkInNotDone.value == true &&
+        checkInDone.value == false &&
+        ticketType.value == 'Todos os ingressos') {
       foundList.value = participantsList
           .where((participant) => participant.checked == false)
           .toList();
+    } else if (ticketType.value == 'Ingresso Meia') {
+      foundList.value = participantsList
+          .where((participant) => participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (ticketType.value == 'Gratuito') {
+      foundList.value = participantsList
+          .where((participant) => participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (ticketType.value == 'Ingresso teste') {
+      foundList.value = participantsList
+          .where((participant) => participant.ticket.contains(ticketType.value))
+          .toList();
+    } else if (ticketType.value == 'Todos os ingressos') {
+      foundList.value = participantsList;
     } else {
       foundList.value = participantsList;
     }
   }
-
-  // void filterTicket() {
-  //   if (ticketType.value == 'Ingresso Meia') {
-  //     foundList.value = participantsList
-  //         .where((participant) => participant.ticket.contains(ticketType.value))
-  //         .toList();
-  //   } else if (ticketType.value == 'Gratuito') {
-  //     foundList.value = participantsList
-  //         .where((participant) => participant.ticket.contains(ticketType.value))
-  //         .toList();
-  //   } else if (ticketType.value == 'Ingresso teste') {
-  //     foundList.value = participantsList
-  //         .where((participant) => participant.ticket.contains(ticketType.value))
-  //         .toList();
-  //   } else {
-  //     foundList.value = participantsList;
-  //   }
-  // }
 
   void clearFilter() {
     checkInDone.value = false;

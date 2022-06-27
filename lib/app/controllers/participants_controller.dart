@@ -11,6 +11,8 @@ class ParticipantsController extends GetxController {
   final foundList = [].obs;
   final checkInDone = false.obs;
   final checkInNotDone = false.obs;
+  final filterCounterCheck = 0.obs;
+  final filterCounterTicket = 0.obs;
   final radioValue = '0'.obs;
   final ticketType = 'Todos os ingressos'.obs;
 
@@ -35,23 +37,13 @@ class ParticipantsController extends GetxController {
   }
 
   void filter() {
-    if (checkInDone.value == true && checkInNotDone.value == false ||
-        ticketType.value == 'Ingresso Meia' ||
-        ticketType.value == 'Gratuito' ||
-        ticketType.value == 'Ingresso teste') {
+    if (checkInDone.value == true && checkInNotDone.value == false) {
       foundList.value = participantsList
-          .where((participant) =>
-              participant.checked == true ||
-              participant.ticket.contains(ticketType.value))
+          .where((participant) => participant.checked == true)
           .toList();
-    } else if (checkInNotDone.value == true && checkInDone.value == false ||
-        ticketType.value == 'Ingresso Meia' ||
-        ticketType.value == 'Gratuito' ||
-        ticketType.value == 'Ingresso teste') {
+    } else if (checkInNotDone.value == true && checkInDone.value == false) {
       foundList.value = participantsList
-          .where((participant) =>
-              participant.checked == false ||
-              participant.ticket.contains(ticketType.value))
+          .where((participant) => participant.checked == false)
           .toList();
     } else {
       foundList.value = participantsList;
@@ -79,6 +71,8 @@ class ParticipantsController extends GetxController {
   void clearFilter() {
     checkInDone.value = false;
     checkInNotDone.value = false;
+    filterCounterCheck.value = 0;
+    filterCounterTicket.value = 0;
     radioValue.value = '0';
     ticketType.value = 'Todos os ingressos';
   }

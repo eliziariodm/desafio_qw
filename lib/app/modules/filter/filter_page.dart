@@ -60,6 +60,11 @@ class FilterPage extends StatelessWidget {
                       onPressed: () {
                         controller.checkInDone.value =
                             !controller.checkInDone.value;
+                        if (controller.checkInDone.value == true) {
+                          controller.filterCounterCheck.value++;
+                        } else {
+                          controller.filterCounterCheck.value--;
+                        }
                       },
                     ),
                     ElevatedButton(
@@ -92,6 +97,12 @@ class FilterPage extends StatelessWidget {
                       onPressed: () {
                         controller.checkInNotDone.value =
                             !controller.checkInNotDone.value;
+
+                        if (controller.checkInNotDone.value == true) {
+                          controller.filterCounterCheck.value++;
+                        } else {
+                          controller.filterCounterCheck.value--;
+                        }
                       },
                     ),
                   ],

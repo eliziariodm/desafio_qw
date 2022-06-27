@@ -70,33 +70,67 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: ElevatedButton.icon(
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all(0),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.purple[50]),
-                        padding: MaterialStateProperty.all<EdgeInsets>(
-                            const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 15)),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.purple[50]),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          const EdgeInsets.symmetric(
+                              vertical: 13, horizontal: 10)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      label: const Text(
-                        "Filtrar",
-                        style: TextStyle(color: Colors.purple, fontSize: 16),
-                      ),
-                      icon: Image.asset(
-                        'assets/icons/filter.png',
-                        color: Colors.purple,
-                      ),
-                      onPressed: () => Get.toNamed('/filter'),
                     ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(
+                          () => Visibility(
+                            visible: controller.checkInDone.value == true ||
+                                controller.checkInNotDone.value == true ||
+                                controller.ticketType.value ==
+                                    'Ingresso Meia' ||
+                                controller.ticketType.value == 'Gratuito' ||
+                                controller.ticketType.value == 'Ingresso teste',
+                            child: Container(
+                              width: 23,
+                              height: 23,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.purple[700],
+                                  ),
+                                  child: Text(
+                                    '${controller.filterCounterCheck.value + controller.filterCounterTicket.value}',
+                                    style: const TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 3),
+                        const Text(
+                          "Filtrar",
+                          style: TextStyle(color: Colors.purple, fontSize: 16),
+                        ),
+                        const SizedBox(width: 10),
+                        Image.asset(
+                          'assets/icons/filter.png',
+                          color: Colors.purple,
+                        ),
+                      ],
+                    ),
+                    onPressed: () => Get.toNamed('/filter'),
                   ),
                 ],
               ),

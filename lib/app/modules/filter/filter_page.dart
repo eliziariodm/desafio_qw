@@ -29,7 +29,7 @@ class FilterPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Obx(
                 () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       style: ButtonStyle(
@@ -41,7 +41,7 @@ class FilterPage extends StatelessWidget {
                         ),
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 25)),
+                                vertical: 13, horizontal: 20)),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -78,7 +78,7 @@ class FilterPage extends StatelessWidget {
                         ),
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             const EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 25)),
+                                vertical: 13, horizontal: 20)),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
